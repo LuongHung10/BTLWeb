@@ -1,0 +1,113 @@
+{% extends 'home/base.html' %}
+{% block title%}Home{% endblock%}
+{% block content %}
+<div class="w-full">
+  <img src="https://routine.vn/media/amasty/webp/Coffee-Lovers-Series-2_jpg.webp" alt="Full Width Image" class="w-full" />
+</div>
+<div class="mb-10">
+    <div class="relative mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+      <h2 class="text-2xl font-bold tracking-tight text-gray-900 text-center">Best Jean</h2>
+      <!-- Product Card  -->
+      <div class="my-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+        
+        {% for jean_item in jean_items %}
+        <div class="group relative shadow-md px-1 py-1 rounded-xl">
+          <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+            <img src="{{jean_item.image_link}}" alt="" class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+          </div>
+          <div class="mt-4">
+            <div class="text-md font-semibold text-gray-700 overflow-hidden" style="max-height: 1.5em;">
+              <a href="{% url 'home:detail' jean_item.id %}">
+                <span aria-hidden="true" class="absolute inset-0"></span>
+                {{jean_item.name}}
+              </a>
+            </div>
+            <p class="text-sm font-bold text-red-600 mb-4">{{jean_item.price|floatformat:3}}đ</p>
+          </div>
+        </div>    
+        {% endfor %}
+      </div>
+      <button class="absolute bottom-4 right-4 bg-black hover:bg-white text-white hover:text-black py-2 px-4 rounded-lg transition duration-300">
+        <a href="{% url 'home:category_detail' jean_category.id %}">Xem thêm</a>
+      </button>
+    </div>
+    <div class="relative mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+      <h2 class="text-2xl font-bold tracking-tight text-gray-900 text-center">Best Shirt</h2>
+      <!-- Product Card  -->
+      <div class="my-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+        
+        {% for shirt_item in shirt_items %}
+        <div class="group relative shadow-md px-1 py-1 rounded-xl">
+          <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+            <img src="{{shirt_item.image_link}}" alt="" class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+          </div>
+          <div class="mt-4">
+            <div class="text-md font-semibold text-gray-700 overflow-hidden" style="max-height: 1.5em;">
+              <a href="{% url 'home:detail' shirt_item.id %}">
+                <span aria-hidden="true" class="absolute inset-0"></span>
+                {{shirt_item.name}}
+              </a>
+            </div>
+            <p class="text-sm font-bold text-red-600 mb-4">{{shirt_item.price|floatformat:3}}đ</p>
+          </div>
+        </div>    
+        {% endfor %}
+      </div>
+      <button class="absolute bottom-4 right-4 bg-black hover:bg-white text-white hover:text-black py-2 px-4 rounded-lg transition duration-300">
+        <a href="{% url 'home:category_detail' shirt_category.id %}">Xem thêm</a>
+      </button>
+    </div>
+    <div class="relative mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+      <h2 class="text-2xl font-bold tracking-tight text-gray-900 text-center">Best Jacket</h2>
+      <!-- Product Card  -->
+      <div class="my-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+        
+        {% for jacket_item in jacket_items %}
+        <div class="group relative shadow-md px-1 py-1 rounded-xl">
+          <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+            <img src="{{jacket_item.image_link}}" alt="" class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+          </div>
+          <div class="mt-4">
+            <div class="text-md font-semibold text-gray-700 overflow-hidden" style="max-height: 1.5em;">
+              <a href="{% url 'home:detail' jacket_item.id %}">
+                <span aria-hidden="true" class="absolute inset-0"></span>
+                {{jacket_item.name}}
+              </a>
+            </div>
+            <p class="text-sm font-bold text-red-600 mb-4">{{jacket_item.price|floatformat:3}}đ</p>
+          </div>
+        </div>    
+        {% endfor %}
+      </div>
+      <button class="absolute bottom-4 right-4 bg-black hover:bg-white text-white hover:text-black py-2 px-4 rounded-lg transition duration-300">
+        <a href="{% url 'home:category_detail' jacket_category.id %}">Xem thêm</a>
+      </button>
+    </div>
+    <div class="relative mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+      <h2 class="text-2xl font-bold tracking-tight text-gray-900 text-center">Best Dress</h2>
+      <!-- Product Card  -->
+      <div class="my-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+        
+        {% for dress_item in dress_items %}
+        <div class="group relative shadow-md px-1 py-1 rounded-xl">
+          <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+            <img src="{{dress_item.image_link}}" alt="" class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+          </div>
+          <div class="mt-4">
+            <div class="text-md font-semibold text-gray-700 overflow-hidden" style="max-height: 1.5em;">
+              <a href="{% url 'home:detail' dress_item.id %}">
+                <span aria-hidden="true" class="absolute inset-0"></span>
+                {{dress_item.name}}
+              </a>
+            </div>
+            <p class="text-sm font-bold text-red-600 mb-4">{{dress_item.price|floatformat:3}}đ</p>
+          </div>
+        </div>    
+        {% endfor %}
+      </div>
+      <button class="absolute bottom-4 right-4 bg-black hover:bg-white text-white hover:text-black py-2 px-4 rounded-lg transition duration-300">
+        <a href="{% url 'home:category_detail' dress_category.id %}">Xem thêm</a>
+      </button>
+    </div>
+  </div>
+{% endblock %}

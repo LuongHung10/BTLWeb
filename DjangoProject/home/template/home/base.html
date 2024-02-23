@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <script src="http://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <header class="bg-white border-b border-gray-200 shadow-md">
+        <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
+          <div class="flex lg:flex-1">
+            <a href="{% url 'home:index' %}" class="-m-1.5 p-1.5">
+              <img class="h-10 w-auto" src="https://www.logotypes101.com/logos/152/E10FBC79A8BBBFD5E52BEDB13F8AF90F/tn_TFOlogotype.png" alt="">
+            </a>
+          </div>
+          <div class="hidden lg:flex lg:gap-x-12">
+            <a href="{% url 'home:index' %}" class="text-sm font-semibold leading-6 text-gray-900 hover:text-gray-500">Home</a>
+            <a href="{% url 'home:product' %}" class="text-sm font-semibold leading-6 text-gray-900 hover:text-gray-500">Product</a>
+            <a href="{% url 'home:about' %}" class="text-sm font-semibold leading-6 text-gray-900 hover:text-gray-500">About</a>
+          </div>
+          <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+            <a href="{% url 'Cart:cart_detail' %}" class="text-sm font-semibold leading-6 text-gray-900 hover:text-gray-500"><i class="fa-solid fa-cart-shopping"></i></a>
+            {% if user.is_authenticated %}
+            <a href="{% url 'home:signout' %}" class="text-sm font-semibold leading-6 text-gray-900 hover:text-gray-500 ml-5">Sign out</a>            
+            {% else %}
+            <a href="{% url 'home:signin' %}" class="text-sm font-semibold leading-6 text-gray-900 hover:text-gray-500 ml-5">Sign in</a>
+            <a href="{% url 'home:register' %}" class="text-sm font-semibold leading-6 text-gray-900 hover:text-gray-500 ml-5 ">Register <span aria-hidden="true">&rarr;</span></a>
+            {% endif %}
+          </div>
+        </nav>
+    </header>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
