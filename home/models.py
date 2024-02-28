@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.conf import settings
+from PIL import Image
+
 # Create your models here.
 class Category(models.Model):
     name = models.CharField(max_length=100)
@@ -48,3 +50,13 @@ class OrderItem(models.Model):
     def __str__(self):
         order_info = f"Order ID: {self.order.id}, Owner: {self.order.first_name} {self.order.last_name}, Created At: {self.order.created_at}"
         return f"Product: {self.product_name}, {order_info}"
+    
+    
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    avatar = models.ImageField(default='default.jpg', upload_to='profile_images')
+    bio = models.TextField()
+
+    def __str__(self):
+        return self.user.username

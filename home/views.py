@@ -15,6 +15,7 @@ from django.utils.encoding import force_bytes, force_str
 from django.contrib.auth.decorators import login_required
 from Cart.cart import Cart
 from . token import generate_token
+from .forms import UpdateUserForm, UpdateProfileForm
 
 # Create your views here.
 def index(request):
@@ -209,3 +210,20 @@ def product_page(request, category_id=None):
 
 def about_page(request):
     return render(request, 'home/about.html')
+
+@login_required
+def profile(request):
+    if request.method == 'POST':
+        user_form = UpdateUserForm(request.POST, instance=request.user)
+        profile_form = UpdateProfileForm(request.POST, request.FILES, instance=request.user.profile)
+
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.success(request, 'Your profile is updated successfully')
+            return redirect(to='users-profile')
+    else:
+        user_form = UpdateUserForm(instance=request.user)
+        profile_form = UpdateProfileForm(instance=request.user.profile)
+
+    return render(request, 'home/profile.html', {'user_form': user_form, 'profile_form': profile_form})
