@@ -1,0 +1,72 @@
+{% extends 'home/base.html' %}
+{% block title%}Check Out{% endblock %}
+
+{% block content %}
+<div class="container mx-auto flex justify-right p-10 border-b border-gray-200">
+    <h1 class="text-3xl font-semibold">Check Out</h1>
+</div>
+<div class="container mx-auto p-4 flex">
+    <!-- Phần bên trái: Thông tin người mua -->
+    <div class="w-2/3 p-4">
+        <div class="bg-gray-100 p-8 rounded-lg shadow-md">
+            <h1 class="text-2xl font-semibold mb-4">Contact Information</h1>
+            
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="container mx-auto flex mb-4">
+                    <div class="w-1/2 mr-3">
+                        <label for="fname" class="block text-gray-700">First Name</label>
+                        <input required type="text" id="fname" name="fname" class="w-full p-2 border border-gray-300 rounded-md">
+                    </div>
+                    <div class="w-1/2 ml-3">
+                        <label for="lname" class="block text-gray-700">Last Name</label>
+                        <input required type="text" id="lname" name="lname" class="w-full p-2 border border-gray-300 rounded-md">
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label for="email" class="block text-gray-700">Email</label>
+                    <input required type="email" id="email" name="email" class="w-full p-2 border border-gray-300 rounded-md">
+                </div>
+                
+                <div class="mb-4">
+                    <label for="phone" class="block text-gray-700">Phone</label>
+                    <input required type="number" id="phone" name="phone" class="w-full p-2 border border-gray-300 rounded-md">
+                </div>
+
+                <div class="mb-4">
+                    <label for="address" class="block text-gray-700">Address</label>
+                    <input required type="text" id="address" name="address" class="w-full p-2 border border-gray-300 rounded-md">
+                </div>
+                <!-- Thêm các trường thông tin thanh toán khác ở đây -->
+
+                <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-md">Confirm Order</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Phần bên phải: Giỏ hàng -->
+<div class="w-1/3 p-4">
+    <div class="bg-gray-100 p-8 rounded-lg shadow-md">
+        <h1 class="text-2xl font-semibold mb-4">Order Summary</h1>
+        <!-- Hiển thị danh sách sản phẩm trong giỏ hàng -->
+        <div class="mb-4">
+            {% for item in cart_items %}
+            <div class="flex items-center mb-2 border-b border-gray-300 ">
+                <div class="w-16 h-16 bg-gray-200 rounded-md mr-4">
+                    <img src="{{ item.image_link }}" alt="Product" class="w-16 h-full object-cover rounded mr-4">
+                </div> <!-- Đây là ảnh sản phẩm -->
+                <div>
+                    <h2 class="text-lg font-semibold">{{item.name|truncatechars:20}}</h2>
+                    <p class="text-gray-600">Số lượng: {{item.quantity}}</p>
+                    <p class="text-gray-600 mb-2">Giá tiền: {{item.price|floatformat:3}}</p>
+                </div>
+            </div>
+            {% endfor %}
+            <!-- Thêm các mục sản phẩm trong giỏ hàng ở đây -->
+        </div>
+        <p class="mt-4 text-lg font-semibold">Tổng cộng: {{total|floatformat:3}}</p>
+    </div>
+</div>
+</div>
+{% endblock%}
