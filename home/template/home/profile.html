@@ -1,8 +1,13 @@
 {% extends "home/base.html" %}
 {% block title %}Profile Page{% endblock title %}
 {% block content %}
-    <div class="row my-5 p-10">
-        <img class="rounded-circle account-img" src="{{ user.profile.avatar.url }} " style="cursor: pointer;"/>
+    <div class="col-xl-4">
+        <div class = "card mb-4 mb-x1-0">
+            <div class = "card-header">Ảnh Đại Diện</div>
+            <div class = "card-body text-center">
+                <img class="img-account-profile rounded-circle mb-2" src="{{ user.profile.avatar.url }} ">
+            </div>
+        </div>
     </div>
     {% if user_form.errors %}
         <div class="alert alert-danger alert-dismissible" role="alert">
