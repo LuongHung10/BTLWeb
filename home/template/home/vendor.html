@@ -1,0 +1,40 @@
+{% extends 'home/base.html' %}
+{%block content%}
+<div class="container mx-auto flex justify-right p-10 border-b border-gray-200">
+    <h1 class="text-3xl font-semibold">Vendor register</h1>
+</div>
+<div class="container mx-auto p-4 flex">
+    <!-- Phần bên trái: Thông tin người mua -->
+    <div class="w-2/3 p-4">
+        <div class="bg-gray-100 p-8 rounded-lg shadow-md">
+            <h1 class="text-2xl font-semibold mb-4">Contact Information</h1>
+            
+            <form action="" method="POST">
+                {% csrf_token %}
+
+                <div class="mb-4">
+                    <label for="title" class="block text-gray-700">Title</label>
+                    <input required type="text" id="title" name="title" class="w-full p-2 border border-gray-300 rounded-md">
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block text-gray-700">Email</label>
+                    <input required type="email" id="email" name="email" class="w-full p-2 border border-gray-300 rounded-md">
+                </div>
+                
+                <div class="mb-4">
+                    <label for="phone" class="block text-gray-700">Phone</label>
+                    <input required type="number" id="phone" name="phone" class="w-full p-2 border border-gray-300 rounded-md">
+                </div>
+
+                <div class="mb-4">
+                    <label for="address" class="block text-gray-700">Address</label>
+                    <input required type="text" id="address" name="address" class="w-full p-2 border border-gray-300 rounded-md">
+                </div>
+                <!-- Thêm các trường thông tin thanh toán khác ở đây -->
+
+                <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-md">Confirm Order</button>
+            </form>
+        </div>
+    </div>
+
+{%endblock%}

@@ -15,7 +15,7 @@ from django.utils.encoding import force_bytes, force_str
 from django.contrib.auth.decorators import login_required
 from Cart.cart import Cart
 from . token import generate_token
-from .forms import UpdateUserForm, UpdateProfileForm
+from .forms import *
 
 # Create your views here.
 def index(request):
@@ -227,3 +227,33 @@ def profile(request):
         profile_form = UpdateProfileForm(instance=request.user.profile)
 
     return render(request, 'home/profile.html', {'user_form': user_form, 'profile_form': profile_form})
+
+@login_required
+def vendor(request):
+    return render(request , 'home/vendor.html')
+def add_product(request):
+    cate = Category.objects.all()
+    if request.method == 'POST':
+        data = request.POST
+        item = Item.objects.create(
+            name = data['name'],
+            price = data['price'],
+            image_link = request.FILES['image_link'],
+            description = data['description'],
+            created_by = request.user,
+            category_id = data['category'],
+        )
+        return redirect('home/add_new_product.html')
+    else:
+        return render(request, 'home/add_new_product.html' ,{ 'category' : cate})
+
+
+def create_item(request):
+    if request.method == 'POST':
+        form = ItemForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('success_url')  # Thay 'success_url' bằng URL bạn muốn chuyển hướng sau khi tạo thành công
+    else:
+        form = ItemForm()
+    return render(request, 'create_item.html', {'form': form})

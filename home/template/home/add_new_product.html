@@ -1,0 +1,75 @@
+{% extends 'home/base.html' %}
+{%block content%}
+<style>
+    #drop-area {
+        border: 2px dashed #ccc;
+        width: 300px;
+        height: 200px;
+        text-align: center;
+        margin: 0 auto;
+    }
+    #img_view{
+        width: 100%;
+        height: 100%;
+        border: 2px dashed #000;
+        background-position: center;
+        background-size: cover;
+    }
+</style>
+<div class="container p-10 border-b border-gray-200" style="margin: auto;">
+    <h1 class="text-3xl font-semibold" style="text-align: center;">Product register</h1>
+</div>
+<div class="container mx-auto p-4 " style="margin: auto;">
+        <div class="bg-gray-100 p-8 rounded-lg shadow-md">
+            <h1 class="text-2xl font-semibold mb-4" style="text-align: center;">Product Infomation</h1>
+            
+            <form action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="mb-4">
+                    <label for="name" class="block text-gray-700">Name</label>
+                    <input required type="text" id="name" name="name" class="w-full p-2 border border-gray-300 rounded-md">
+                </div>
+                <div class="mb-4">
+                    <label for="price" class="block text-gray-700">Price</label>
+                    <input required type="text" id="price" name="price" class="w-full p-2 border border-gray-300 rounded-md">
+                </div>
+                <div class="mb-4" style="display: flex; justify-content: center;">
+                    <label for="image_link" id = "drop-area" class="block text-gray-700" >
+                        <input type="file" id = "image_link" name="image_link" accept="image/*" >
+                        <div id="img_view">
+                            
+                        </div>
+                    </label>
+                    
+                </div>
+                <div class="mb-4">
+                    <label for="description" class="block text-gray-700">Description</label>
+                    <input required type="text" id="description" name="description" class="w-full p-2 border border-gray-300 rounded-md">
+                </div>
+                <div class="mb-4">
+                    <label for="category" class="block text-gray-700">Category</label>
+                    <select required id="category" name="category" class="w-full p-2 border border-gray-300 rounded-md">
+                        {% for category in category %}
+                            <option value="{{ category.id }}">{{ category.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-md">Register</button>
+            </form>
+    </div>
+    <script>
+        const droparea = document.getElementById("drop-area");
+        const input_file = document.getElementById("image_link");
+        const imageView = document.getElementById("img_view");
+
+        input_file.addEventListener("change",uploadImage);
+        function uploadImage(){
+            let imglink  =  URL.createObjectURL(input_file.files[0]);
+            imageView.style.backgroundImage = "url('" + imglink + "')";
+
+        }
+
+    </script>
+
+{%endblock%}
