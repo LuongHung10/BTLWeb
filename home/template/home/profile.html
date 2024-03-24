@@ -1,53 +1,52 @@
 {% extends "home/base.html" %}
 {% block title %}Profile Page{% endblock title %}
 {% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-4">
-                <div class = "card mb-4 mb-x1-0 ">
-                    <div class = "card-header">Ảnh Đại Diện</div>
-                    <div class = "card-body text-center">
-                        <img class="img-account-profile rounded-circle mb-2" src="{{ user.profile.avatar.url }} ">
-                    </div>
-                </div>
-            </div>
-            {% if user_form.errors %}
-                <div class="alert alert-danger alert-dismissible" role="alert">
-                    <div id="form_errors">
-                        {% for key, value in user_form.errors.items %}
-                            <strong>{{ value }}</strong>
-                        {% endfor %}
-                    </div>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            {% endif %}
-            <div class="col-xl-8">
-                <form method="post" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <div class="text-gray-600 mb-2 text-center">
-                        <div class="col-md-5">
-                            <div class="form-group">
-                                <label class="block text-sm font-medium leading-6 text-gray-900">Username:</label>
-                                    {{ user_form.username }}
-                                <label class="block text-sm font-medium leading-6 text-gray-900">Email:</label>
-                                    {{ user_form.email }}
-                            </div>
-                            <div class="form-group">
-                                <a href="#">Change Password</a>
-                                <hr>
-                                <label class="small mb-1">Change Avatar:</label>
-                                {{ profile_form.avatar }}
-                            </div>
-                            <label class="small mb-1">Bio:</label> {{ profile_form.bio }}
-                        </div>
-                    </div>
-                    <br><br>
-                    <button type="submit" class="btn btn-dark btn-lg">Save Changes</button>
-                    <button type="reset" class="btn btn-dark btn-lg">Reset</button>
-                </form>
-            </div>
+<div class="flex">
+    <div class = "w-2/5">
+        <div class = "lg:w-1/2 p-4 text-center">Ảnh Đại Diện</div>
+        <div class = "lg:w-1/2 flex justify-center">
+            <img src="{{ user.profile.avatar.url }} ">
         </div>
     </div>
+    {% if user_form.errors %}
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <div id="form_errors">
+                {% for key, value in user_form.errors.items %}
+                    <strong>{{ value }}</strong>
+                {% endfor %}
+            </div>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endif %}
+    <div class="w-3/5 p-4 mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2">
+        <form class="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="">
+                <div class="">
+                    <div class="form-group">
+                        <label class="text-sm font-medium leading-6 text-gray-900 flex">Username:</label>
+                            {{ user_form.username }}
+                        <label class="text-sm font-medium leading-6 text-gray-900 flex">Email:</label>
+                            {{ user_form.email }}
+                    </div>
+                    <div class="form-group">
+                        <a href="#">Change Password</a>
+                        <hr>
+                        <label class="small mb-1">Change Avatar:</label>
+                        {{ profile_form.avatar }}
+                    </div>
+                </div>
+            </div>
+            <br><br>
+            <div class="tracking-tight text-gray-900 text-center">
+                <div class="lg:flex lg:gap-x-8">
+                    <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save Changes</button>
+                    <button type="reset" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Reset</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 {% endblock content %}

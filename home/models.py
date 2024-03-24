@@ -66,7 +66,7 @@ class Profile(models.Model):
 
         img = Image.open(self.avatar.path)
 
-        if img.height > 300 or img.width > 300:
-            new_img = (300, 300)
+        if img.height > 250 or img.width > 250:
+            new_img = (250, 250)
             img.thumbnail(new_img)
             img.save(self.avatar.path)
