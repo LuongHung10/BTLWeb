@@ -67,7 +67,7 @@ ROOT_URLCONF = 'shopquanao.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR, 'home/template'],
+        'DIRS': [os.path.join(BASE_DIR, 'home/template')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

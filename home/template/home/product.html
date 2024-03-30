@@ -18,7 +18,13 @@
         {% for item in items %}
         <div class="group relative shadow-md px-1 py-1 rounded-xl">
           <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-            <img src="{{item.image_link}}" alt="" class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+            {% if 'http' in item.image_link.url %}
+            {% with https_url=item.image_link.url|slice:'16:'|safe %}
+                <img src="https://{{ https_url }}" alt="Ảnh" class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+            {% endwith %}
+            {% else %}
+            <img src="{{ item.image_link.url }}" alt="Product" class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+            {%endif%}
           </div>
           <div class="mt-4">
             <div class="text-md font-semibold text-gray-700 overflow-hidden" style="max-height: 1.5em;">

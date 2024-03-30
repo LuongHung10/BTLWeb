@@ -221,7 +221,7 @@ def profile(request):
             user_form.save()
             profile_form.save()
             messages.success(request, 'Your profile is updated successfully')
-            return redirect(to='users-profile')
+            return redirect('/success_page')
     else:
         user_form = UpdateUserForm(instance=request.user)
         profile_form = UpdateProfileForm(instance=request.user.profile)
@@ -243,7 +243,7 @@ def add_product(request):
             created_by = request.user,
             category_id = data['category'],
         )
-        return redirect('home/add_new_product.html')
+        return redirect('/success_page')
     else:
         return render(request, 'home/add_new_product.html' ,{ 'category' : cate})
 

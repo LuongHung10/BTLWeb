@@ -2,7 +2,7 @@
 {% block title%}Home{% endblock%}
 {% block content %}
 <div class="w-full">
-  <img src="https://routine.vn/media/amasty/webp/Coffee-Lovers-Series-2_jpg.webp" alt="Full Width Image" class="w-full" />
+  <img src="https://routine.vn/media/magefan_blog/bien-hoa-da-dang-phong-cach-cung-ao-len-co-lo2.jpg" alt="Full Width Image" class="w-full" />
 </div>
 <div class="mb-10">
     <div class="relative mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
@@ -13,7 +13,13 @@
         {% for jean_item in jean_items %}
         <div class="group relative shadow-md px-1 py-1 rounded-xl">
           <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-            <img src="{{jean_item.image_link}}" alt="" class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+            {% if 'http' in jean_item.image_link.url %}
+            {% with https_url=jean_item.image_link.url|slice:'16:'|safe %}
+                <img src="https://{{ https_url }}" alt="Ảnh" class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+            {% endwith %}
+            {% else %}
+            <img src="{{ jean_item.image_link.url }}" alt="Product" class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+            {%endif%}
           </div>
           <div class="mt-4">
             <div class="text-md font-semibold text-gray-700 overflow-hidden" style="max-height: 1.5em;">
@@ -39,7 +45,13 @@
         {% for shirt_item in shirt_items %}
         <div class="group relative shadow-md px-1 py-1 rounded-xl">
           <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-            <img src="{{shirt_item.image_link}}" alt="" class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+            {% if 'http' in shirt_item.image_link.url %}
+            {% with https_url=shirt_item.image_link.url|slice:'16:'|safe %}
+                <img src="https://{{ https_url }}" alt="Ảnh" class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+            {% endwith %}
+            {% else %}
+            <img src="{{ shirt_item.image_link.url}}" alt="Product" class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+            {%endif%}
           </div>
           <div class="mt-4">
             <div class="text-md font-semibold text-gray-700 overflow-hidden" style="max-height: 1.5em;">
@@ -65,7 +77,13 @@
         {% for jacket_item in jacket_items %}
         <div class="group relative shadow-md px-1 py-1 rounded-xl">
           <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-            <img src="{{jacket_item.image_link}}" alt="" class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+            {% if 'http' in jacket_item.image_link.url %}
+            {% with https_url=jacket_item.image_link.url|slice:'16:'|safe %}
+                <img src="https://{{ https_url }}" alt="Ảnh" class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+            {% endwith %}
+            {% else %}
+            <img src="{{ jacket_item.image_link.url }}" alt="Product" class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+            {%endif%}
           </div>
           <div class="mt-4">
             <div class="text-md font-semibold text-gray-700 overflow-hidden" style="max-height: 1.5em;">
@@ -91,7 +109,14 @@
         {% for dress_item in dress_items %}
         <div class="group relative shadow-md px-1 py-1 rounded-xl">
           <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-            <img src="{{dress_item.image_link}}" alt="" class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+            {% if 'http' in dress_item.image_link.url %}
+            {% with https_url=dress_item.image_link.url|slice:'16:'|safe %}
+                <img src="https://{{ https_url }}" alt="Ảnh" class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+            {% endwith %}
+            {% else %}
+            <img src="{{ dress_item.image_link.url }}" alt="Product" class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+            {%endif%}
+
           </div>
           <div class="mt-4">
             <div class="text-md font-semibold text-gray-700 overflow-hidden" style="max-height: 1.5em;">

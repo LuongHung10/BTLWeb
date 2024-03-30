@@ -29,7 +29,7 @@ class Cart(object):
                 'name': item.name,
                 'quantity': quantity,
                 'price': str(item.price),
-                'image_link': item.image_link
+                'image_link': item.image_link.url
             }
         self.save()
 
