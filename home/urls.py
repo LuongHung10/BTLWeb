@@ -22,15 +22,18 @@ urlpatterns = [
     path("password_change/", auth_views.PasswordChangeView.as_view(template_name = 'home/password_change_form.html'), name='password_change'),
     path("password_change/done/", auth_views.PasswordChangeDoneView.as_view(template_name = 'home/password_change_done.html'), name='password_change_done'),
     
+    #success page
     path('success_page/', views.success_page, name='success_page'),
     path('success_register/', views.success_register, name='success_register'),
     
+    #product 
     path('checkout/', views.checkout, name = 'checkout'),
     path('detail/<int:pk>/', views.detail, name = 'detail'),
     path('product', views.product_page, name='product'),
     path('category_detail/<int:category_id>/', views.product_page, name='category_detail'),
     path('about/', views.about_page, name='about'),
     
+    #add product
     path('vendor/',views.vendor,name="vendor"),
     path('add_product/',views.add_product,name='add_product'),
     # path('add_new_product/',)

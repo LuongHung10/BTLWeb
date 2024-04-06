@@ -87,11 +87,14 @@ def register(request):
         password = request.POST['password']
         password2 = request.POST['password2']
         
+        # Kiểm xem 2 password có giống nhau không  
         if password == password2:
+            # Kiểm tra email của người dùng có tồn tại không
             if User.objects.filter(email = email).exists():
                 messages.info(request, 'Email Already Used')
                 return redirect('/register')
-                
+            
+            # Kiểm tra tên của người dùng có tồn tại không
             elif User.objects.filter(username = username).exists():
                 messages.info(request, 'Username Already Used')
                 return redirect('/register')
@@ -107,7 +110,7 @@ def register(request):
                 message = "Hello " + username + "! \n" + "Welcome to my project\n Thank you for joining my project to have some fun"
                 send_mail(subject, message, settings.EMAIL_HOST_USER, [user.email], fail_silently=False)
                     
-                    
+                # Tại một đường link gửi đến tin nhắn của người đăng kí
                 current_site = get_current_site(request)
                 email_subject = "Confirm your account @ Project - Django Signin"
                 message2 = render_to_string('confirmation.html', {
@@ -216,13 +219,14 @@ def profile(request):
     if request.method == 'POST':
         user_form = UpdateUserForm(request.POST, instance=request.user)
         profile_form = UpdateProfileForm(request.POST, request.FILES, instance=request.user.profile)
-
+        # Kiểm tra trang profile của người dùng có tồn tại không
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
             messages.success(request, 'Your profile is updated successfully')
             return redirect('/success_page')
     else:
+        # Khi tạo thêm một người dùng mới thì sẽ tạo ra một profile đi cùng
         user_form = UpdateUserForm(instance=request.user)
         profile_form = UpdateProfileForm(instance=request.user.profile)
 
@@ -247,7 +251,7 @@ def add_product(request):
     else:
         return render(request, 'home/add_new_product.html' ,{ 'category' : cate})
 
-
+@login_required
 def create_item(request):
     if request.method == 'POST':
         form = ItemForm(request.POST)

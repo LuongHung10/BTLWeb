@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.dispatch import receiver
 from .models import Profile
 
+# Khi tạo ra một người dùng mới thì sẽ gửi đến model để tạo 1 profile mới 
 
 @receiver(post_save, sender=User)
 def create_profile(sender, instance, created, **kwargs):

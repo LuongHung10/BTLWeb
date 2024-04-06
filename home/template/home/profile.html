@@ -89,7 +89,13 @@ hr{
     <div class = "haft">
         <div style="display:flex; width: 100%; justify-content: center; text-align: center;">Ảnh Đại Diện</div>
         <div class = "avatar"  >
-            <img src="{{ user.profile.avatar.url }} " class="img1" >
+            {% if 'http' in user.profile.avatar.url %}
+            {% with https_url=user.profile.avatar.url|slice:'16:'|safe %}
+                <img src="https://{{ https_url }}" alt="Ảnh" class="w-full h-auto">
+            {% endwith %}
+            {% else %}
+            <img src="{{ user.profile.avatar.url }}" alt="Avatar" class="w-full h-auto">
+            {%endif%}
 
 
         </div>
