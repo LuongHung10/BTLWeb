@@ -10,11 +10,11 @@
         <div class="bg-white p-4 mb-4 relative flex items-center border-b border-gray-300">
             {% if 'http' in item.image_link %}
             {% with https_url=item.image_link|slice:'16:'|safe %}
-                <img src="https://{{ https_url }}" alt="Ảnh" class="w-16 h-full object-cover rounded mr-4">
+            <img src="https://{{ https_url }}" alt="Ảnh" class="w-16 h-full object-cover rounded mr-4">
             {% endwith %}
-        {% else %}
+            {% else %}
             <img src="{{ item.image_link}}" alt="Product" class="w-16 h-full object-cover rounded mr-4">
-        {%endif%}
+            {%endif%}
             <div class="flex-1">
                 <div class="flex justify-between items-center">
                     <h2 class="text-lg font-semibold">{{ item.name }}</h2>
@@ -27,7 +27,7 @@
                             <a href="{% url 'Cart:item_decrement' item.item_id %}">-</a>
                         </button>
                         <button class="ml-20 text-red-500">
-                            <a href="{% url 'Cart:item_clear' item.item_id %}">Remove</a>
+                            <a href="{% url 'Cart:item_clear' item.item_id %}">Xóa</a>
                         </button>
                     </div>
                 </div>
@@ -40,25 +40,25 @@
 
     <!-- Bên phải - Order Summary -->
     <div class="w-1/3 bg-gray-100 p-4 rounded">
-        <h2 class="text-lg font-semibold mb-4">Order Summary</h2>
+        <h2 class="text-lg font-semibold mb-4">Tổng tiền hàng</h2>
         <div class="flex justify-between items-center border-b pb-2 mb-4">
-            <span>Subtotal:</span>
+            <span>Tổng tiền:</span>
             <span>{{ subtotal|floatformat:3 }}</span>
         </div>
         <div class="flex justify-between items-center border-b pb-2 mb-4">
-            <span>Shipping estimate:</span>
+            <span>Giá vận chuyển:</span>
             <span>{{ shipping|floatformat:3 }}</span>
         </div>
         <div class="flex justify-between items-center border-b pb-2 mb-4">
-            <span>Tax estimate:</span>
+            <span>Giá thuế:</span>
             <span>{{ tax|floatformat:3 }}</span>
         </div>
         <div class="flex justify-between items-center mb-4">
-            <span>Total:</span>
+            <span>Tổng:</span>
             <span class="text-red-500">{{ total|floatformat:3 }}</span>
         </div>
         <button class="bg-blue-500 text-white px-4 py-2 rounded">
-            <a href="{% url 'home:checkout' %}">Checkout</a>
+            <a href="{% url 'home:checkout' %}">Thanh toán</a>
         </button>
     </div>
 </div>

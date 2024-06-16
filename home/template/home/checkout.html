@@ -1,25 +1,25 @@
 {% extends 'home/base.html' %}
-{% block title%}Check Out{% endblock %}
+{% block title%}Thanh toán{% endblock %}
 
 {% block content %}
 <div class="container mx-auto flex justify-right p-10 border-b border-gray-200">
-    <h1 class="text-3xl font-semibold">Check Out</h1>
+    <h1 class="text-3xl font-semibold">Thanh toán</h1>
 </div>
 <div class="container mx-auto p-4 flex">
     <!-- Phần bên trái: Thông tin người mua -->
     <div class="w-2/3 p-4">
         <div class="bg-gray-100 p-8 rounded-lg shadow-md">
-            <h1 class="text-2xl font-semibold mb-4">Contact Information</h1>
+            <h1 class="text-2xl font-semibold mb-4">Thông tin liên hệ</h1>
             
             <form action="" method="POST">
                 {% csrf_token %}
                 <div class="container mx-auto flex mb-4">
                     <div class="w-1/2 mr-3">
-                        <label for="fname" class="block text-gray-700">First Name</label>
+                        <label for="fname" class="block text-gray-700">Họ</label>
                         <input required type="text" id="fname" name="fname" class="w-full p-2 border border-gray-300 rounded-md">
                     </div>
                     <div class="w-1/2 ml-3">
-                        <label for="lname" class="block text-gray-700">Last Name</label>
+                        <label for="lname" class="block text-gray-700">Tên</label>
                         <input required type="text" id="lname" name="lname" class="w-full p-2 border border-gray-300 rounded-md">
                     </div>
                 </div>
@@ -30,17 +30,17 @@
                 </div>
                 
                 <div class="mb-4">
-                    <label for="phone" class="block text-gray-700">Phone</label>
+                    <label for="phone" class="block text-gray-700">Số điện thoại</label>
                     <input required type="number" id="phone" name="phone" class="w-full p-2 border border-gray-300 rounded-md">
                 </div>
 
                 <div class="mb-4">
-                    <label for="address" class="block text-gray-700">Address</label>
+                    <label for="address" class="block text-gray-700">Địa chỉ</label>
                     <input required type="text" id="address" name="address" class="w-full p-2 border border-gray-300 rounded-md">
                 </div>
                 <!-- Thêm các trường thông tin thanh toán khác ở đây -->
 
-                <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-md">Confirm Order</button>
+                <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-md">Xác nhận đặt hàng</button>
             </form>
         </div>
     </div>
@@ -48,7 +48,7 @@
     <!-- Phần bên phải: Giỏ hàng -->
 <div class="w-1/3 p-4">
     <div class="bg-gray-100 p-8 rounded-lg shadow-md">
-        <h1 class="text-2xl font-semibold mb-4">Order Summary</h1>
+        <h1 class="text-2xl font-semibold mb-4">Thông tin đặt hàng</h1>
         <!-- Hiển thị danh sách sản phẩm trong giỏ hàng -->
         <div class="mb-4">
             {% for item in cart_items %}

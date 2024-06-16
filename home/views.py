@@ -1,9 +1,7 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from .models import *
-from django.utils import timezone
 from django.contrib import messages
 from django.contrib.auth.models import User
-from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth import logout, authenticate
 from django.contrib.auth import login as auth_login
 from shopquanao import settings
@@ -51,7 +49,7 @@ def signin(request):
             auth_login(request, user)
             return redirect('/')
         else:
-            messages.info(request, 'Account Does Not Exist')
+            messages.info(request, 'Tài khoản không tồn tại')
             return redirect('/signin')
     else:
         return render(request, 'home/signin.html')
